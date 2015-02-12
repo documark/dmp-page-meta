@@ -1,0 +1,34 @@
+{
+  "name": "documark-page-meta",
+  "version": "0.1.0",
+  "description": "Documark plugin for configuring the header, footer, page margins, and global styles.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mauvm/documark-page-meta.git"
+  },
+  "keywords": [
+    "documark",
+    "documark-plugin",
+    "page",
+    "meta",
+    "page margins",
+    "config",
+    "stylesheets",
+    "css"
+  ],
+  "author": "Maurits van Mastrigt <maurits@nerdieworks.nl>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mauvm/documark-page-meta/issues"
+  },
+  "homepage": "https://github.com/mauvm/documark-page-meta",
+  "dependencies": {
+    "documark-cache": "^0.1.0",
+    "documark-wrapper": "^0.1.0",
+    "valid-url": "^1.0.9"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
