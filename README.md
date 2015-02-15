@@ -2,6 +2,9 @@
 
 Documark plugin for configuring the header, footer, page margins, and global styles.
 
+This plugin wraps the content with a `doctype`, `html`, and `body` element.
+And sets the charset to `UTF-8` in the `head` element.
+
 ### Usage
 
 1. Add plugin to document configuration:
