@@ -3,7 +3,7 @@ var cacheHelper = require('documark-cache');
 var jade        = require('jade');
 var validUrl    = require('valid-url');
 
-module.exports = function pageMeta ($, document, cb) {
+module.exports = function dmpPageMeta ($, document, done) {
 	var config    = document.config();
 	var options   = config.pdf;
 	var cache     = cacheHelper(document);
@@ -74,6 +74,5 @@ module.exports = function pageMeta ($, document, cb) {
 		$.root().append($wrapper);
 	}
 
-	// Done
-	cb();
+	done();
 };
