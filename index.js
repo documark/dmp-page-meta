@@ -20,12 +20,12 @@ module.exports = function dmpPageMeta ($, document, done) {
 	var hasFooter = ($footer.length > 0);
 
 	// Page options
-	options.encoding     = 'UTF-8';
-	options.pageSize     = 'A4';
-	options.marginTop    = (hasHeader ? '30mm' : '20mm');
-	options.marginBottom = (hasFooter ? '30mm' : '20mm');
-	options.marginLeft   = '20mm';
-	options.marginRight  = '20mm';
+	options.encoding     = options.encoding     || 'UTF-8';
+	options.pageSize     = options.pageSize     || 'A4';
+	options.marginTop    = options.marginTop    || (hasHeader ? '30mm' : '20mm');
+	options.marginBottom = options.marginBottom || (hasFooter ? '30mm' : '20mm');
+	options.marginLeft   = options.marginLeft   || '20mm';
+	options.marginRight  = options.marginRight  || '20mm';
 
 	// Add header/footer
 	if (hasHeader) {
