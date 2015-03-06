@@ -3,6 +3,13 @@ var cacheHelper = require('documark-cache');
 var jade        = require('jade');
 var validUrl    = require('valid-url');
 
+function wrap (data, file) {
+	if (typeof data !== 'object') {
+		data = { body: data };
+	}
+	return jade.renderFile(path.join(__dirname, file), data);
+}
+
 module.exports = function dmpPageMeta ($, document, done) {
 	var config    = document.config();
 	var options   = config.pdf;
@@ -11,12 +18,6 @@ module.exports = function dmpPageMeta ($, document, done) {
 	var hasHeader = ($header.length > 0);
 	var $footer   = $('footer');
 	var hasFooter = ($footer.length > 0);
-	var wrap      = function (data, file) {
-		if (typeof data !== 'object') {
-			data = { body: data };
-		}
-		return jade.renderFile(path.join(__dirname, file), data);
-	};
 
 	// Page options
 	options.encoding     = 'UTF-8';
@@ -64,14 +65,6 @@ module.exports = function dmpPageMeta ($, document, done) {
 
 		options.userStyleSheet = stylesheetsFile.path;
 		stylesheetsFile.end(imports);
-	}
-
-	// Wrap document itself
-	if ($('body').length === 0) {
-		var $wrapper = $(wrap('', 'assets/wrapper-basic.jade'));
-		var $items   = $.root().children();
-		$wrapper.find('body').append($items);
-		$.root().append($wrapper);
 	}
 
 	done();
