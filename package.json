@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mauvm/dmp-page-meta.git"
+    "url": "https://github.com/documark/dmp-page-meta.git"
   },
   "keywords": [
     "documark",
@@ -20,9 +20,9 @@
   "author": "Maurits van Mastrigt <maurits@nerdieworks.nl>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mauvm/dmp-page-meta/issues"
+    "url": "https://github.com/documark/dmp-page-meta/issues"
   },
-  "homepage": "https://github.com/mauvm/dmp-page-meta",
+  "homepage": "https://github.com/documark/dmp-page-meta",
   "dependencies": {
     "documark-cache": "^0.2.0",
     "jade": "^1.9.2",

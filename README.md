@@ -1,7 +1,7 @@
 # Documark Page Meta
 
 [![npm version](https://badge.fury.io/js/dmp-page-meta.svg)](http://badge.fury.io/js/dmp-page-meta)
-[![dependency status](https://david-dm.org/mauvm/dmp-page-meta.svg)](https://david-dm.org/mauvm)
+[![dependency status](https://david-dm.org/documark/dmp-page-meta.svg)](https://david-dm.org/documark/dmp-page-meta)
 
 > Documark plugin for configuring the header, footer, page margins, and global styles.
 
