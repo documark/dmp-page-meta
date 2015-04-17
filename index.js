@@ -4,9 +4,6 @@ var jade        = require('jade');
 var validUrl    = require('valid-url');
 
 function wrap (data, file) {
-	if (typeof data !== 'object') {
-		data = { body: data };
-	}
 	return jade.renderFile(path.join(__dirname, file), data);
 }
 
@@ -18,6 +15,7 @@ module.exports = function dmpPageMeta ($, document, done) {
 	var hasHeader = ($header.length > 0);
 	var $footer   = $('footer');
 	var hasFooter = ($footer.length > 0);
+	var data, file;
 
 	// Page options
 	options.encoding     = options.encoding     || 'UTF-8';
@@ -29,15 +27,27 @@ module.exports = function dmpPageMeta ($, document, done) {
 
 	// Add header/footer
 	if (hasHeader) {
-		var headerFile = cache.fileWriteStream('header.html');
-		headerFile.end(wrap($.html($header), 'assets/wrapper-header-footer.jade'));
-		options.headerHtml = 'file://' + headerFile.path;
+		file = cache.fileWriteStream('header.html');
+		data = {
+			body: $.html($header),
+			config: config,
+			'$el': $header,
+			header: true,
+		}
+		file.end(wrap(data, 'assets/wrapper-header-footer.jade'));
+		options.headerHtml = 'file://' + file.path;
 		$header.remove();
 	}
 	if (hasFooter) {
-		var footerFile = cache.fileWriteStream('footer.html');
-		footerFile.end(wrap($.html($footer), 'assets/wrapper-header-footer.jade'));
-		options.footerHtml = 'file://' + footerFile.path;
+		file = cache.fileWriteStream('footer.html');
+		data = {
+			body: $.html($footer),
+			config: config,
+			'$el': $footer,
+			footer: true,
+		}
+		file.end(wrap(data, 'assets/wrapper-header-footer.jade'));
+		options.footerHtml = 'file://' + file.path;
 		$footer.remove();
 	}
 
