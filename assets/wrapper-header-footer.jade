@@ -2,6 +2,8 @@ doctype html
 html
 	head
 		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		script
+			!= 'window.skipOnPage = ' + skipOnPage
 		script.
 			window.vars = {};
 			function init() {
@@ -20,9 +22,8 @@ html
 					for (j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
 				}
 
-				// No header/footer on first page
-				// TODO(mauvm): Add toggle option (e.q. 'headerOnFirstPage: true')?
-				if (parseInt(vars.page, 10) === 1) {
+				// Skip header/footer for this page?
+				if (skipOnPage(vars.page)) {
 					var wrapper = document.getElementById('wrapper');
 					wrapper.parentNode.removeChild(wrapper);
 				}

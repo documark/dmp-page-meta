@@ -26,6 +26,7 @@
   "dependencies": {
     "documark-cache": "^0.2.0",
     "jade": "^1.9.2",
+    "tiny-range": "0.0.3",
     "valid-url": "^1.0.9"
   }
 }

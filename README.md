@@ -45,3 +45,12 @@ And sets the charset to `UTF-8` in the `head` element.
 	Note that headers, footers, and things like landscape pages are compiled 'separately'. WkHTMLToPDF allows for combining multiple HTML files into one PDF. So these __'global stylesheets'__ refer to styles that also apply to the entire document.
 
 __Note:__ This plugin globalizes all stylesheets (including the `<link type="text/css" href="..." />` elements).
+
+## Configuration
+
+Use the following options to remove the header/footer for certain pages:
+
+```yaml
+hideHeaderOn: 1
+hideFooterOn: 1, 3-4, 9-
+```

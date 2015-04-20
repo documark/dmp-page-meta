@@ -2,9 +2,44 @@ var path        = require('path');
 var cacheHelper = require('documark-cache');
 var jade        = require('jade');
 var validUrl    = require('valid-url');
+var tinyRange   = require('tiny-range');
 
 function wrap (data, file) {
 	return jade.renderFile(path.join(__dirname, file), data);
+}
+
+function shouldSkipFunction (selector) {
+	var range, i, val;
+
+	// Always show
+	if ( ! selector) {
+		return 'function () { return false; }';
+	}
+
+	// Parse range
+	try {
+		range = ('' + selector).replace(/~/g, '').replace(/-/g, '~');
+		range = tinyRange.parse(range);
+	} catch (ex) {
+		throw new Error('Invalid range string for skipHeaderOn/skipFooterOn: ' + selector);
+	}
+
+	for (i = 0; i < range.length; ++i) {
+		val = range[i];
+		if ( ! Array.isArray(val)) {
+			range[i] = [val, val];
+		}
+	}
+
+	// Function to test for page skip
+	return 'function (page) {'
+			+ 'var range = ' + JSON.stringify(range) + ', i;'
+			+ 'page = parseInt(page, 10);'
+			+ 'for (i = 0; i < range.length; ++i) {'
+				+ 'if (page >= range[i][0] && page <= range[i][1]) { return true; }'
+			+ '}'
+			+ 'return false;'
+		+ '}';
 }
 
 module.exports = function dmpPageMeta ($, document, done) {
@@ -33,6 +68,7 @@ module.exports = function dmpPageMeta ($, document, done) {
 			config: config,
 			'$el': $header,
 			header: true,
+			skipOnPage: shouldSkipFunction(config.hideHeaderOn),
 		}
 		file.end(wrap(data, 'assets/wrapper-header-footer.jade'));
 		options.headerHtml = 'file://' + file.path;
@@ -45,6 +81,7 @@ module.exports = function dmpPageMeta ($, document, done) {
 			config: config,
 			'$el': $footer,
 			footer: true,
+			skipOnPage: shouldSkipFunction(config.hideFooterOn),
 		}
 		file.end(wrap(data, 'assets/wrapper-header-footer.jade'));
 		options.footerHtml = 'file://' + file.path;
