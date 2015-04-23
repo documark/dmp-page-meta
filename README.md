@@ -51,6 +51,12 @@ __Note:__ This plugin globalizes all stylesheets (including the `<link type="tex
 Use the following options to remove the header/footer for certain pages:
 
 ```yaml
+---
+...
 hideHeaderOn: 1
 hideFooterOn: 1, 3-4, 9-
+...
+---
 ```
+
+You should add them to the Front Matter.
