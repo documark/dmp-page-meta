@@ -21,14 +21,15 @@ html
 				}
 
 				// Replacements
-				x=['frompage','topage','webpage','section','subsection','subsubsection'];
-				for (i in x) {
-					y = document.getElementsByClassName(x[i]);
-					for (j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
-				}
+				x={
+					'page-first': 'frompage',
+					'page-number': 'page',
+					'page-count': 'topage',
+					'section': 'section',
+					'subsection': 'subsection',
+					'subsubsection': 'subsubsection',
+				};
 
-				// Aliases
-				x={'page-number': 'page', 'page-count': 'topage'};
 				for (i in x) {
 					y = document.getElementsByClassName(i);
 					for (j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
