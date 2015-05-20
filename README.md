@@ -54,3 +54,10 @@ Use the following options to remove the header/footer for certain pages:
 hideHeaderOn: 1
 hideFooterOn: 1, 3-4, 9-
 ```
+
+Use `startPageCountOn` to shift the displayed page numbers:
+
+```yaml
+startPageCountOn: 2   # to start counting from page number 2
+startPageCountOn: -3  # to skip first four pages, page 5 will now be numbered 1
+```
