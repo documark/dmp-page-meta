@@ -18,7 +18,7 @@ function shouldSkipFunction (selector) {
 
 	// Parse range
 	try {
-		range = ('' + selector).replace(/~/g, '').replace(/-/g, '~');
+		range = ('' + selector).trim().replace(/~/g, '').replace(/(\d+)-(\d+)/g, '$1~$2');
 		range = tinyRange.parse(range);
 	} catch (ex) {
 		throw new Error('Invalid range string for skipHeaderOn/skipFooterOn: ' + selector);
