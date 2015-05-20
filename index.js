@@ -32,14 +32,14 @@ function shouldSkipFunction (selector) {
 	}
 
 	// Function to test for page skip
-	return 'function (page) {'
-			+ 'var range = ' + JSON.stringify(range) + ', i;'
-			+ 'page = parseInt(page, 10);'
-			+ 'for (i = 0; i < range.length; ++i) {'
-				+ 'if (page >= range[i][0] && page <= range[i][1]) { return true; }'
-			+ '}'
-			+ 'return false;'
-		+ '}';
+	return 'function (page) {' +
+			'var range = ' + JSON.stringify(range) + ', i;' +
+			'page = parseInt(page, 10);' +
+			'for (i = 0; i < range.length; ++i) {' +
+				'if (page >= range[i][0] && page <= range[i][1]) { return true; }' +
+			'}' +
+			'return false;' +
+		'}';
 }
 
 module.exports = function dmpPageMeta ($, document, done) {
@@ -69,7 +69,7 @@ module.exports = function dmpPageMeta ($, document, done) {
 			'$el': $header,
 			header: true,
 			skipOnPage: shouldSkipFunction(config.hideHeaderOn),
-		}
+		};
 		file.end(wrap(data, 'assets/wrapper-header-footer.jade'));
 		options.headerHtml = 'file://' + file.path;
 		$header.remove();
@@ -82,7 +82,7 @@ module.exports = function dmpPageMeta ($, document, done) {
 			'$el': $footer,
 			footer: true,
 			skipOnPage: shouldSkipFunction(config.hideFooterOn),
-		}
+		};
 		file.end(wrap(data, 'assets/wrapper-header-footer.jade'));
 		options.footerHtml = 'file://' + file.path;
 		$footer.remove();
