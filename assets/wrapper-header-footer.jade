@@ -3,20 +3,32 @@ html
 	head
 		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
 		script
-			!= 'window.skipOnPage = ' + skipOnPage
+			!= 'window.skipPageOn = ' + skipPageOn + ';'
+			!= 'window.startPageCountOn = ' + parseInt(config.startPageCountOn) + ';'
 		script.
 			window.vars = {};
 			function init() {
 				// Substitute variables
 				var i,j,x=window.location.search.substring(1).split('&'),y,z;
 				for (i in x) {z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+
+				// Increment page counts
+				if (startPageCountOn) {
+					var pageIncrement = parseInt(startPageCountOn) - 1 || 0;
+					vars.frompage = parseInt(vars.frompage) + pageIncrement;
+					vars.page = parseInt(vars.page) + pageIncrement;
+					vars.topage = parseInt(vars.topage) + pageIncrement;
+				}
+
+				// Replacements
 				x=['frompage','topage','webpage','section','subsection','subsubsection'];
 				for (i in x) {
 					y = document.getElementsByClassName(x[i]);
 					for (j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
 				}
 
-				x={'page-number': 'page', 'page-count': 'topage'}; // Aliases
+				// Aliases
+				x={'page-number': 'page', 'page-count': 'topage'};
 				for (i in x) {
 					y = document.getElementsByClassName(i);
 					for (j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
