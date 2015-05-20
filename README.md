@@ -48,6 +48,8 @@ __Note:__ This plugin globalizes all stylesheets (including the `<link type="tex
 
 ## Configuration
 
+These options can be added to your [document configuration][document-configuration].
+
 Use the following options to remove the header/footer for certain pages:
 
 ```yaml
@@ -61,3 +63,5 @@ Use `startPageCountOn` to shift the displayed page numbers:
 startPageCountOn: 2   # to start counting from page number 2
 startPageCountOn: -3  # to skip first four pages, page 5 will now be numbered 1
 ```
+
+[document-configuration]: https://github.com/documark/documark#configuration
