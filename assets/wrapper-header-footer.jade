@@ -9,19 +9,23 @@ html
 			window.vars = {};
 			function init() {
 				// Substitute variables
-				var i,j,x=window.location.search.substring(1).split('&'),y,z;
-				for (i in x) {z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+				var x = window.location.search.substring(1).split('&');
+				var i, j, y, z;
+				for (i in x) {
+					z = x[i].split('=', 2);
+					vars[z[0]] = unescape(z[1]);
+				}
 
 				// Increment page counts
-				if (startPageCountOn) {
-					var pageIncrement = parseInt(startPageCountOn) - 1 || 0;
+				if ( ! isNaN(startPageCountOn)) {
+					var pageIncrement = startPageCountOn - 1;
 					vars.frompage = parseInt(vars.frompage) + pageIncrement;
 					vars.page = parseInt(vars.page) + pageIncrement;
 					vars.topage = parseInt(vars.topage) + pageIncrement;
 				}
 
 				// Replacements
-				x={
+				x = {
 					'page-first': 'frompage',
 					'page-number': 'page',
 					'page-count': 'topage',
@@ -32,7 +36,7 @@ html
 
 				for (i in x) {
 					y = document.getElementsByClassName(i);
-					for (j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+					for (j = 0; j < y.length; ++j) y[j].textContent = vars[x[i]];
 				}
 
 				// Skip header/footer for this page?
