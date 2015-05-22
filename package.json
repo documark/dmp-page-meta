@@ -1,6 +1,6 @@
 {
   "name": "dmp-page-meta",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Documark plugin for configuring the header, footer, page margins, and global styles.",
   "main": "index.js",
   "repository": {
