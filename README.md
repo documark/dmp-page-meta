@@ -60,8 +60,16 @@ hideFooterOn: 1, 3-4, 9-
 Use `startPageCountOn` to shift the displayed page numbers:
 
 ```yaml
-startPageCountOn: 2   # to start counting from page number 2
+startPageCountOn:  2  # to start counting from page number 2
 startPageCountOn: -3  # to skip first four pages, page 5 will now be numbered 1
+```
+
+Let's say you want to skip the first four pages from numbering and hide their headers and footers. You can use this (slightly counterintuitive) configuration for that:
+
+```yaml
+startPageCountOn: -3  # 1 - 4 (number of pages to skip) = -3
+hideHeaderOn: -3-0
+hideFooterOn: -3-0
 ```
 
 [document-configuration]: https://github.com/documark/documark#configuration
